@@ -17,3 +17,22 @@ opensignup.addEventListener('click', () => {
 closesignup.addEventListener('click', () => {
     modal.classList.add('hidden');
 });
+
+
+// Handle modal  menu logic
+const Mmodal = document.getElementById('details-modal');
+const closeModalButton = document.getElementById('close-modal');
+const detailsButtons = document.querySelectorAll('.details-button');
+
+detailsButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const menuId = button.getAttribute('data-menu-id');
+        // You can use the menuId here to load details dynamically if necessary.
+
+        Mmodal.classList.remove('hidden');
+    });
+});
+
+closeModalButton.addEventListener('click', () => {
+    Mmodal.classList.add('hidden');
+});

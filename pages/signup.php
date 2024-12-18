@@ -11,7 +11,7 @@
     <!-- Main Container -->
     <div class=" h-[80%] flex flex-col justify-center items-center px-4">
         <!-- Card -->
-        <div class="bg-white w-full max-w-md rounded-lg shadow-lg p-6 md:p-8">
+        <div class="bg-white w-full max-w-md p-6 md:p-8">
             <!-- Header -->
             <h2 class="text-3xl font-bold text-center text-gray-800">Sign Up</h2>
             <p class="text-center text-gray-500 mt-2">Join us to start your journey!</p>
@@ -50,10 +50,7 @@
             </form>
 
             <!-- Footer -->
-            <p class="text-center text-sm text-gray-500 mt-6">
-                Already have an account? 
-                <a href="#" class="text-blue-600 hover:underline">Sign In</a>
-            </p>
+            <p class="text-center text-sm text-gray-500 mt-6">Already have an account? <a href="../pages/login.php" class="text-blue-600 hover:underline">Log In</a></p>
         </div>
     </div>
 
