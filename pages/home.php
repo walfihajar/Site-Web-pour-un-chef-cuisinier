@@ -1,4 +1,5 @@
 <?php
+include '../database.php';
 ob_start();
 ?>
 
@@ -15,9 +16,9 @@ ob_start();
 
 
 <!-- Features Section -->
-<section id="services" class="py-20 bg-gray-50">
+<section id="services" class="py-20 bg-black">
     <div class="container mx-auto text-center">
-        <h2 class="text-4xl font-semibold mb-10">Our Services</h2>
+        <h2 class="text-4xl font-semibold text-white mb-10">Our Services</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
             <!-- Feature 1 -->
             <div class="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition duration-300">

@@ -14,32 +14,32 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="font-sans bg-gray-100">
+<body class="font-sans bg-black">
 
-    <nav class="bg-white shadow-md">
+    <nav class="bg-black shadow-md">
         <!-- Normal Menu -->
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 text-white lg:px-8">
 
             <div class="flex justify-between h-16 items-center">
 
                 <!-- Logo or Brand Name -->
                 <div class="flex-shrink-0">
-                    <a href="../pages/home.php" class="text-2xl font-bold text-blue-500">BrandName</a>
+                    <a href="../pages/home.php" class="text-2xl font-bold text-blue-500"><img src="../img/logo.png" class="w-16"></a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden md:flex space-x-8">
-                    <a href="../pages/home.php" class="text-gray-700 hover:text-blue-500 font-medium">Home</a>
-                    <a href="../pages/menu.php" class="text-gray-700 hover:text-blue-500 font-medium">Menu</a>
-                    <a href="#" class="text-gray-700 hover:text-blue-500 font-medium">Contact</a>
-                    <a href="#" class="text-gray-700 hover:text-blue-500 font-medium">About</a>
+                    <a href="../pages/home.php" class=" hover:text-blue-500 font-medium">Home</a>
+                    <a href="../pages/menu.php" class=" hover:text-blue-500 font-medium">Menu</a>
+                    <a href="#" class=" hover:text-blue-500 font-medium">Contact</a>
+                    <a href="#" class=" hover:text-blue-500 font-medium">About</a>
                 </div>
 
                 <!-- Buttons -->
                 <div class="hidden md:flex items-center space-x-4">
                     <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"><a href="../pages/signup.php">Sign Up</a></button>
-                    <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300"><a href="../pages/login.php">Log In</a></button>
+                    <button class="bg-gray-200  px-4 py-2 rounded hover:bg-gray-300"><a href="../pages/login.php">Log In</a></button>
                 </div>
 
                 <!-- Mobile Menu Button -->
