@@ -22,6 +22,75 @@
     $sub_clients = "?" ;
   }
 
+  $sql1 = "SELECT r.date_reservation, r.heure_reservation, r.nombre_personnes, u.nom, u.prenom, m.titre
+            FROM reservation AS r
+            INNER JOIN users AS u ON u.id_user = r.id_user
+            INNER JOIN menu AS m ON m.id_menu = r.id_menu
+            WHERE r.date_reservation >= CURRENT_DATE()
+            AND r.heure_reservation >= CURRENT_TIME()
+            AND r.statut = 'confirmed'
+            ORDER BY r.date_reservation ASC
+            LIMIT 1
+          ";
+
+  $result = mysqli_query($conn,$sql1);
+  $next = mysqli_fetch_assoc($result);
+  if($next){
+    $nom = $next['nom'].''.$next['prenom'];
+    $titre = $next['titre'];
+    $day = $next['date_reservation'];
+    $time = $next['heure_reservation'];
+  }else{
+    $nom = '❌';
+    $titre ='';
+    $day = '';
+    $time = '❌';
+    
+  }
+
+  $sql2 = "SELECT COUNT(*) AS confirmed_today 
+  FROM reservation 
+  WHERE statut = 'confirmed' 
+  AND date_reservation = CURDATE() + INTERVAL 1 DAY";
+
+  $result1 = mysqli_query($conn, $sql2);
+
+  if ($result1) {
+  $row = mysqli_fetch_assoc($result1);
+  $confirmed_today = $row['confirmed_today'];
+  } else {
+  echo "Error: " . mysqli_error($conn);
+  }
+
+  $sql3 = "SELECT COUNT(*) AS confirmed_demain
+  FROM reservation 
+  WHERE statut = 'confirmed' 
+  AND date_reservation = CURDATE() + INTERVAL 2 DAY";
+
+  $result2 = mysqli_query($conn, $sql3);
+
+  if ($result2) {
+  $row = mysqli_fetch_assoc($result2);
+  $confirmed_demain = $row['confirmed_demain'];
+  } else {
+  echo "Error: " . mysqli_error($conn);
+  }
+  
+
+   $sql4 =" SELECT COUNT(*) AS pending
+  FROM reservation
+  WHERE statut = 'pending' 
+  AND DATE(date_reservation) >= CURRENT_DATE()";
+  
+
+  $result3 = mysqli_query($conn, $sql4);
+
+  if ($result3) {
+  $row = mysqli_fetch_assoc($result3);
+  $pending = $row['pending'];
+  } else {
+  echo "Error: " . mysqli_error($conn);
+  }
 
 ?>
 
@@ -67,27 +136,27 @@
 
           <!-- Demandes en attente -->
           <div class="bg-blue-100 p-6 rounded-lg shadow-lg text-center">
-            <h2 class="text-lg font-semibold text-gray-700 mb-2">Demandes en Attente</h2>
-            <p class="text-3xl font-bold text-blue-600">5</p>
+            <h2 class="text-lg font-semibold text-gray-700 mb-2">Pending Requests</h2>
+            <p class="text-3xl font-bold text-blue-600"><?php echo $pending;?></p>
           </div>
 
           <!-- Demandes approuvées aujourd'hui -->
           <div class="bg-green-100 p-6 rounded-lg shadow-lg text-center">
-            <h2 class="text-lg font-semibold text-gray-700 mb-2">Demandes Approuvées (Aujourd'hui)</h2>
-            <p class="text-3xl font-bold text-green-600">12</p>
+            <h2 class="text-lg font-semibold text-gray-700 mb-2">Today's Requests</h2>
+            <p class="text-3xl font-bold text-green-600"><?php echo $confirmed_today;?></p>
           </div>
 
           <!-- Demandes approuvées pour demain -->
           <div class="bg-yellow-100 p-6 rounded-lg shadow-lg text-center">
-            <h2 class="text-lg font-semibold text-gray-700 mb-2">Demandes Approuvées (Demain)</h2>
-            <p class="text-3xl font-bold text-yellow-600">7</p>
+            <h2 class="text-lg font-semibold text-gray-700 mb-2">Tomorrow's Requests</h2>
+            <p class="text-3xl font-bold text-yellow-600"><?php echo $confirmed_demain;?></p>
           </div>
 
           <!-- Prochain client -->
-          <div class="bg-gray-100 p-6 rounded-lg shadow-lg text-center">
-            <h2 class="text-lg font-semibold text-gray-700 mb-2">Prochain Client</h2>
-            <p class="text-md text-gray-700"><strong>Nom :</strong> John Doe</p>
-            <p class="text-md text-gray-700"><strong>Réservation :</strong> Dîner - 19h00</p>
+          <div class="bg-red-100 p-6 rounded-lg shadow-lg">
+            <h2 class="text-lg font-semibold text-gray-700 mb-2  text-center">Next Client</h2>
+            <p class="text-md text-gray-700  text-start"><strong>Name : </strong> <?php echo $nom; ?> </p>
+            <p class="text-md text-gray-700 text-start "><strong>Date : </strong><?php echo $day .'  '. $time ;?></p>
           </div>
 
           <!-- Nombre de clients inscrits -->
